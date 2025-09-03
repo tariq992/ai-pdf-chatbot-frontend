@@ -111,7 +111,7 @@ export default function Navbar({ sidebarOpen, setSidebarOpen, onLogout }) {
     aria-haspopup="true"
   >
     <img
-      src={user.avatar || "/user.png"}
+      src={"/user.png"}
       alt="User Avatar"
       className="w-8 h-8 rounded-full object-cover border border-gray-300 dark:border-gray-700"
     />
@@ -124,7 +124,7 @@ export default function Navbar({ sidebarOpen, setSidebarOpen, onLogout }) {
       <div className="absolute right-0 mt-32 w-64 bg-white dark:bg-gray-800 shadow-lg rounded-md border border-gray-300 dark:border-gray-700 p-4 text-gray-900 dark:text-gray-100 z-50">
         <div className="flex flex-col items-center mb-3">
           <img
-            src={user.avatar || "/user.png"}
+            src={"/user.png"}
             alt="User Avatar"
             className="w-16 h-16 rounded-full object-cover border border-gray-300 dark:border-gray-700 mb-2"
           />
