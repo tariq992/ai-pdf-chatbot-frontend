@@ -37,6 +37,7 @@ export default function Login() {
       setError(validationError);
       return;
     }
+console.log("Backend URL:", process.env.REACT_APP_BACKEND_URL);
 
     setLoading(true);
     try {
@@ -48,6 +49,7 @@ export default function Login() {
       }
       
       localStorage.setItem("user_name", res.data.user.name);  // ✅ set here
+       localStorage.setItem("user_id", res.data.user.id);  // ✅ save user id here
 
       navigate("/");
     } catch (err) {
