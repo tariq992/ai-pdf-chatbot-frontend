@@ -6,6 +6,7 @@ import {
   createNote,
   updateNote,
   deleteNote,
+  Token,
 } from "../api/api";
 import {
   FaEdit,
@@ -14,6 +15,7 @@ import {
   FaSearch,
   FaPlus,
 } from "react-icons/fa";
+
 
 // Utility functions
 
@@ -183,7 +185,6 @@ const Spinner = () => (
     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
   </svg>
 );
-
 // Floating Modal wrapper for forms
 const FloatingModal = ({ isOpen, onClose, title, children }) => {
   if (!isOpen) return null;
@@ -397,6 +398,7 @@ const Notes = () => {
   const [noteToDelete, setNoteToDelete] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [activeTagFilter, setActiveTagFilter] = useState(null);
+const [userToken, setUserToken] = useState("");
 
   const fetchNotes = useCallback(async () => {
     setLoading(true);
@@ -414,6 +416,18 @@ const Notes = () => {
 
   useEffect(() => {
     fetchNotes();
+ 
+  const fetchToken = async () => {
+    try {
+      const res = await Token(); // Token() calls your endpoint
+      const tokenValue = res.data?.token || localStorage.getItem("token"); 
+      setUserToken(tokenValue);
+    } catch (err) {
+      console.error("Failed to fetch token:", err);
+    }
+  };
+
+  fetchToken();
   }, [fetchNotes]);
 
   const showToast = (message, type = "info") => {
@@ -565,6 +579,22 @@ const handlePdfUpload = async (event) => {
  return (
   <main className="max-w-5xl mx-auto p-6 bg-gray-100 dark:bg-gray-900 min-h-screen text-gray-800 dark:text-gray-100 relative">
     <h1 className="text-3xl font-semibold mb-6">My Content</h1>
+      {/* Token display and copy button */}
+      <h1>Here is the User's Token</h1>
+<div className="mb-6 p-4 bg-gray-200 dark:bg-gray-700 rounded-md flex items-center justify-between gap-3">
+  <span className="break-all text-sm text-gray-800 dark:text-gray-100">
+    {userToken || "No token found"}
+  </span>
+  <button
+    onClick={() => {
+      navigator.clipboard.writeText(userToken);
+      showToast("Token copied to clipboard!", "success");
+    }}
+    className="px-3 py-1 rounded bg-blue-600 hover:bg-blue-700 text-white dark:bg-blue-500 dark:hover:bg-blue-600 text-sm"
+  >
+    Copy
+  </button>
+</div>
 
     {/* Search bar */}
     <div className="mb-6 flex items-center gap-3 max-w-md">
