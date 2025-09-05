@@ -11,7 +11,7 @@ import {
   Check,
 } from "lucide-react";
 import { GrSend } from "react-icons/gr";
-import { askAI, createCheckoutSession, getNotes } from "../api/api";
+import { askAI, getNotes } from "../api/api";
 import { loadStripe } from "@stripe/stripe-js";
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
