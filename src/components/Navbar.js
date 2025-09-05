@@ -130,7 +130,7 @@ export default function Navbar({ sidebarOpen, setSidebarOpen, onLogout }) {
             alt="User Avatar"
             className="w-16 h-16 rounded-full object-cover border border-gray-300 dark:border-gray-700 mb-2"
           />
-          <h3 className="text-lg font-semibold">{user.name || "User"}</h3>
+          <h3 className="text-lg font-semibold">{user.name || "Business Owner"}</h3>
           <p className="text-sm text-gray-500 dark:text-gray-400 break-words">
             {user.email || "No email"}
           </p>
