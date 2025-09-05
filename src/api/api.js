@@ -58,11 +58,11 @@ export const askAI = (data, token) =>
 // -----------------------
 // USAGE / SUBSCRIPTION
 // -----------------------
-// export const createCheckoutSession = () =>
-//   api.post("/api/payments/create-checkout-session").then((res) => res.data);
+export const createCheckoutSession = () =>
+  api.post("/api/payments/create-checkout-session").then((res) => res.data);
 
-// export const checkSubscription = () =>
-//   api.post("/api/payments/mark-subscribed");
+export const checkSubscription = () =>
+  api.post("/api/payments/mark-subscribed");
 
 // Optional helper for notes with token
 export const Token = (params = {}, token) =>
